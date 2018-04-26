@@ -1,0 +1,38 @@
+<div class="row">
+<div class="container mt-4">
+        <h1>Editar Categoria</h1>
+        <hr>
+        <div class="row m-b-18px">
+            <div class="col-md-12 text-right mb-2">
+                <a (click)="readCategory()" class="btn btn-primary text-white">
+                    Ver Categorias
+                </a>
+            </div>
+        </div>
+             
+        <form [formGroup]="update_category_form" (ngSubmit)="updateCategory()">
+            <div class="row">
+                <div class="col-3">
+                    <label for="nombre">Nombre</label>
+                </div>
+                <div class="col-9">
+                        <input formControlName="categoria"
+                        type='text' name='categoria'
+                        class='form-control' required />
+            <!-- show this error if the field is 'touched' and 'empty' -->
+            <div
+                *ngIf="update_category_form.get('categoria').touched && update_category_form.get('categoria').hasError('required')"
+                class="alert alert-danger">
+                Name is required.
+            </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-right">
+                    <button class="btn btn-primary" type="submit" [disabled]="update_category_form.invalid">
+                    Actualizar
+                    </button>
+            </div>
+        </form>
+    </div>
+    </div>

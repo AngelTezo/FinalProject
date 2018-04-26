@@ -1,0 +1,100 @@
+<h1>Roles</h1>
+<hr>
+<div class="mt-2">
+    <h2>Nuevo rol</h2>
+    <hr>
+    <form [formGroup]="create_rol_form" (ngSubmit)="createrol()">
+        <div class="row">
+            <div class="col-3">
+                <label for="nombre">Nombre</label>
+            </div>
+            <div class="col-9">
+                    <input
+                    formControlName="nombre"
+                    name="nombre" type="text"
+                    class="form-control" required 
+                    [(ngModel)]="rolNuevo"
+                    />
+            </div>
+        </div>
+        <hr>
+        <div class="text-right mt2">
+            <button class="btn btn-primary btn-lg" type="submit" [disabled]="create_rol_form.invalid">
+                Crear
+            </button>
+        </div>
+    </form>
+</div>
+<hr>
+<div class="row">
+        <div class="col-sm-4">
+<h2>Listado</h2>
+              </div>
+
+             <div class="col-sm-4">
+                <div class="alert alert-success alert-dismissable" *ngIf="msg">
+                  <a class="close" (click)="closeAlert()">
+                    &times;
+                  </a>
+                  {{msg}}
+                </div>
+              </div>
+</div>
+<hr>
+<div class="row">
+<div class="col-8">
+        <div class="row">
+            <div class="col-md-12 table-responsive">
+                <!-- HTML table for displaying a product details -->
+                <table class="table table-hover table-bordered">
+                        <tr>
+                                <th>Nombre</th>
+                                <th>Activo</th>
+                                <th>Actions</th>
+                        </tr>
+                        <tr *ngFor="let rol of rols">
+                                <td>{{rol.nombre}}</td>
+                                <td>{{rol.activo_rol}}</td>
+                                <td class="text-center">
+                    
+                                    <!-- edit product button -->
+                                    <a (click)="editrol(rol.id_rol, rol.nombre)" class="btn btn-info text-white">
+                                        Editar
+                                    </a>
+                    
+                                    <!-- delete product button -->
+                                    <a (click)="deleterol(rol.id_rol)" class="btn btn-danger text-white }">
+                                        Borrar
+                                    </a>
+                                </td>
+                            
+                        </tr>
+                </table>
+            </div>
+        </div>
+</div>
+
+        <div class="col-4"  [hidden]="hideUpdate">
+                <h3>Editar</h3>
+                <hr>                         
+                <form [formGroup]="update_rol_form" (ngSubmit)="updaterol()">
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="nombre">Nombre</label>
+                        </div>
+                        <div class="col-9">
+                                <input formControlName="nombre"
+                                type='text' name='nombre' [(ngModel)]="rolNombre"
+                                class='form-control' required />
+                    <!-- show this error if the field is 'touched' and 'empty' -->
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="text-right">
+                            <button class="btn btn-primary" type="submit" [disabled]="update_rol_form.invalid">
+                            Actualizar
+                            </button>
+                    </div>
+                </form>
+            </div>
+        </div>

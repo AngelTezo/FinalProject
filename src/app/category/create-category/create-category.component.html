@@ -1,0 +1,41 @@
+
+<div class="container mt-4">
+        <h1>Nueva Categoria</h1>
+        <hr>
+        <div class="row m-b-18px">
+            <div class="col-md-12 text-right mb-2">
+                <a (click)="readCategoria()" class="btn btn-primary text-white">
+                    Ver Categorias
+                </a>
+            </div>
+        </div>
+             
+            <!--
+                1. Bind our HTML form to Angular using [formGroup]
+                2. If form was submitted, call createProduct() method of CreateProductComponent
+            -->
+        <form [formGroup]="create_category_form" (ngSubmit)="createCategory()">
+            <div class="row">
+                <div class="col-3">
+                    <label for="nombre">Nombre</label>
+                </div>
+                <div class="col-9">
+                        <input
+                        formControlName="categoria"
+                        name="categoria" type="text"
+                        class="form-control" required />
+                        <div
+                        *ngIf="create_category_form.get('categoria').touched && create_category_form.get('categoria').hasError('required')"
+                        class="alert alert-danger">
+                        Name is required.
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-right mt2">
+                <button class="btn btn-primary btn-lg" type="submit" [disabled]="create_category_form.invalid">
+                    Crear
+                </button>
+            </div>
+        </form>
+    </div>
